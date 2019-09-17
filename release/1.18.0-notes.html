@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>NumPy 1.18.0 Release Notes &mdash; NumPy v1.18.dev0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.18.0.dev0+9723e9c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/js/copybutton.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" >
+    <link rel="index" title="Index" href="../genindex.html" >
+    <link rel="search" title="Search" href="../search.html" >
+    <link rel="top" title="NumPy v1.18.dev0 Manual" href="../index.html" >
+    <link rel="up" title="Release Notes" href="../release.html" >
+    <link rel="next" title="NumPy 1.17.2 Release Notes" href="1.17.2-notes.html" >
+    <link rel="prev" title="Release Notes" href="../release.html" > 
+  </head>
+  <body>
+<div class="container">
+  <div class="top-scipy-org-logo-header" style="background-color: #a2bae8;">
+    <a href="../index.html">
+      <img border=0 alt="NumPy" src="../_static/numpy_logo.png"></a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="https://numpy.org/">NumPy.org</a></li>
+        <li class="active"><a href="https://numpy.org/doc">Docs</a></li>
+        
+        <li class="active"><a href="../index.html">NumPy v1.18.dev0 Manual</a></li>
+        
+
+          <li class="active"><a href="../release.html" accesskey="U">Release Notes</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="1.17.2-notes.html" title="NumPy 1.17.2 Release Notes"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="../release.html" title="Release Notes"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">NumPy 1.18.0 Release Notes</a><ul>
+<li><a class="reference internal" href="#deprecations">Deprecations</a><ul>
+<li><a class="reference internal" href="#np-fromfile-and-np-fromstring-will-error-on-bad-data"><em class="xref py py-obj">np.fromfile</em> and <em class="xref py py-obj">np.fromstring</em> will error on bad data</a></li>
+<li><a class="reference internal" href="#deprecate-np-alen">Deprecate <em class="xref py py-obj">np.alen</em></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#expired-deprecations">Expired deprecations</a></li>
+<li><a class="reference internal" href="#compatibility-notes">Compatibility notes</a><ul>
+<li><a class="reference internal" href="#numpy-lib-recfunctions-drop-fields-can-no-longer-return-none"><code class="docutils literal notranslate"><span class="pre">numpy.lib.recfunctions.drop_fields</span></code> can no longer return <em class="xref py py-obj">None</em></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#c-api-changes">C API changes</a><ul>
+<li><a class="reference internal" href="#pydatatype-isunsized-descr-now-returns-false-for-structured-datatypes">PyDataType_ISUNSIZED(descr) now returns False for structured datatypes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#new-features">New Features</a><ul>
+<li><a class="reference internal" href="#add-our-own-pxd-cython-import-file">Add our own <code class="docutils literal notranslate"><span class="pre">*.pxd</span></code> cython import file</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#improvements">Improvements</a><ul>
+<li><a class="reference internal" href="#different-c-numeric-types-of-the-same-size-have-unique-names">Different C numeric types of the same size have unique names</a></li>
+<li><a class="reference internal" href="#argwhere-now-produces-a-consistent-result-on-0d-arrays"><code class="docutils literal notranslate"><span class="pre">argwhere</span></code> now produces a consistent result on 0d arrays</a></li>
+<li><a class="reference internal" href="#numpy-unique-has-consistent-axes-order-except-the-chosen-one-when-axis-is-not-none"><code class="docutils literal notranslate"><span class="pre">numpy.unique</span></code> has consistent axes order (except the chosen one) when <code class="docutils literal notranslate"><span class="pre">axis</span></code> is not None</a></li>
+<li><a class="reference internal" href="#numpy-matmul-with-boolean-output-now-converts-to-boolean-values"><code class="docutils literal notranslate"><span class="pre">numpy.matmul</span></code> with boolean output now converts to boolean values</a></li>
+<li><a class="reference internal" href="#numpy-random-randint-produced-incorrect-value-when-the-range-was-2-32"><code class="docutils literal notranslate"><span class="pre">numpy.random.randint</span></code> produced incorrect value when the range was <code class="docutils literal notranslate"><span class="pre">2**32</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#changes">Changes</a><ul>
+<li><a class="reference internal" href="#incorrect-threshold-in-np-set-printoptions-raises-typeerror-or-valueerror">Incorrect <code class="docutils literal notranslate"><span class="pre">threshold</span></code> in <code class="docutils literal notranslate"><span class="pre">np.set_printoptions</span></code> raises <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> or <code class="docutils literal notranslate"><span class="pre">ValueError</span></code></a></li>
+<li><a class="reference internal" href="#numpy-distutils-append-behavior-changed-for-ldflags-and-similar"><code class="docutils literal notranslate"><span class="pre">numpy.distutils</span></code>: append behavior changed for LDFLAGS and similar</a></li>
+<li><a class="reference internal" href="#remove-numpy-random-entropy-without-a-deprecation">Remove <code class="docutils literal notranslate"><span class="pre">numpy.random.entropy</span></code> without a deprecation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../release.html"
+                        title="previous chapter">Release Notes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="1.17.2-notes.html"
+                        title="next chapter">NumPy 1.17.2 Release Notes</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h4>Quick search</h4>
+    <div>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" style="width: inherit;" name="q" />
+      <input type="submit" value="search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="numpy-1-18-0-release-notes">
+<h1>NumPy 1.18.0 Release Notes<a class="headerlink" href="#numpy-1-18-0-release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="deprecations">
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="np-fromfile-and-np-fromstring-will-error-on-bad-data">
+<h3><em class="xref py py-obj">np.fromfile</em> and <em class="xref py py-obj">np.fromstring</em> will error on bad data<a class="headerlink" href="#np-fromfile-and-np-fromstring-will-error-on-bad-data" title="Permalink to this headline">¶</a></h3>
+<p>In future numpy releases, the functions <em class="xref py py-obj">np.fromfile</em> and <em class="xref py py-obj">np.fromstring</em>
+will throw an error when parsing bad data.
+This will now give a <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code> where previously partial or
+even invalid data was silently returned. This deprecation also affects
+the C defined functions c:func:<em class="xref py py-obj">PyArray_FromString`</em> and
+c:func:<em class="xref py py-obj">PyArray_FromFile</em>
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/13605">gh-13605</a>)</p>
+</div>
+<div class="section" id="deprecate-np-alen">
+<h3>Deprecate <em class="xref py py-obj">np.alen</em><a class="headerlink" href="#deprecate-np-alen" title="Permalink to this headline">¶</a></h3>
+<p><em class="xref py py-obj">np.alen</em> was deprecated. Use <em class="xref py py-obj">len</em> instead.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14181">gh-14181</a>)</p>
+</div>
+</div>
+<div class="section" id="expired-deprecations">
+<h2>Expired deprecations<a class="headerlink" href="#expired-deprecations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">PyArray_As1D</span></code> and <code class="docutils literal notranslate"><span class="pre">PyArray_As2D</span></code> have been removed in favor of
+<code class="docutils literal notranslate"><span class="pre">PyArray_AsCArray</span></code>
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14036">gh-14036</a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">np.rank</span></code> has been removed. This was deprecated in NumPy 1.10
+and has been replaced by <code class="docutils literal notranslate"><span class="pre">np.ndim</span></code>.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14039">gh-14039</a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">PyArray_FromDimsAndDataAndDescr</span></code> and <code class="docutils literal notranslate"><span class="pre">PyArray_FromDims</span></code> have been
+removed (they will always raise an error). Use <code class="docutils literal notranslate"><span class="pre">PyArray_NewFromDescr</span></code>
+and <code class="docutils literal notranslate"><span class="pre">PyArray_SimpleNew</span></code> instead.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14100">gh-14100</a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">numeric.loads</span></code>, <code class="docutils literal notranslate"><span class="pre">numeric.load</span></code>, <code class="docutils literal notranslate"><span class="pre">np.ma.dump</span></code>,
+<code class="docutils literal notranslate"><span class="pre">np.ma.dumps</span></code>, <code class="docutils literal notranslate"><span class="pre">np.ma.load</span></code>, <code class="docutils literal notranslate"><span class="pre">np.ma.loads</span></code> are removed,
+use <code class="docutils literal notranslate"><span class="pre">pickle</span></code> methods instead
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14256">gh-14256</a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">arrayprint.FloatFormat</span></code>, <code class="docutils literal notranslate"><span class="pre">arrayprint.LongFloatFormat</span></code> has been removed,
+use <code class="docutils literal notranslate"><span class="pre">FloatingFormat</span></code> instead</li>
+<li><code class="docutils literal notranslate"><span class="pre">arrayprint.ComplexFormat</span></code>, <code class="docutils literal notranslate"><span class="pre">arrayprint.LongComplexFormat</span></code> has been
+removed, use <code class="docutils literal notranslate"><span class="pre">ComplexFloatingFormat</span></code> instead</li>
+<li><code class="docutils literal notranslate"><span class="pre">arrayprint.StructureFormat</span></code> has been removed, use <code class="docutils literal notranslate"><span class="pre">StructureVoidFormat</span></code>
+instead
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14259">gh-14259</a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">np.testing.rand</span></code> has been removed. This was deprecated in NumPy 1.11
+and has been replaced by <code class="docutils literal notranslate"><span class="pre">np.random.rand</span></code>.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14325">gh-14325</a>)</li>
+<li>Class <code class="docutils literal notranslate"><span class="pre">SafeEval</span></code> in <code class="docutils literal notranslate"><span class="pre">numpy/lib/utils.py</span></code> has been removed. This was deprecated in NumPy 1.10.
+Use <code class="docutils literal notranslate"><span class="pre">np.safe_eval</span></code> instead.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14335">gh-14335</a>)</li>
+</ul>
+</div>
+<div class="section" id="compatibility-notes">
+<h2>Compatibility notes<a class="headerlink" href="#compatibility-notes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="numpy-lib-recfunctions-drop-fields-can-no-longer-return-none">
+<h3><a class="reference internal" href="../user/basics.rec.html#numpy.lib.recfunctions.drop_fields" title="numpy.lib.recfunctions.drop_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.lib.recfunctions.drop_fields</span></code></a> can no longer return <em class="xref py py-obj">None</em><a class="headerlink" href="#numpy-lib-recfunctions-drop-fields-can-no-longer-return-none" title="Permalink to this headline">¶</a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">drop_fields</span></code> is used to drop all fields, previously the array would
+be completely discarded and <em class="xref py py-obj">None</em> returned. Now it returns an array of the
+same shape as the input, but with no fields. The old behavior can be retained
+with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dropped_arr</span> <span class="o">=</span> <span class="n">drop_fields</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+<span class="k">if</span> <span class="n">dropped_arr</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span> <span class="o">==</span> <span class="p">():</span>
+    <span class="n">dropped_arr</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>converting the empty recarray to <em class="xref py py-obj">None</em>
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14510">gh-14510</a>)</p>
+</div>
+</div>
+<div class="section" id="c-api-changes">
+<h2>C API changes<a class="headerlink" href="#c-api-changes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pydatatype-isunsized-descr-now-returns-false-for-structured-datatypes">
+<h3>PyDataType_ISUNSIZED(descr) now returns False for structured datatypes<a class="headerlink" href="#pydatatype-isunsized-descr-now-returns-false-for-structured-datatypes" title="Permalink to this headline">¶</a></h3>
+<p>Previously this returned True for any datatype of itemsize 0, but now this
+returns false for the non-flexible datatype with itemsize 0, <code class="docutils literal notranslate"><span class="pre">np.dtype([])</span></code>.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14393">gh-14393</a>)</p>
+</div>
+</div>
+<div class="section" id="new-features">
+<h2>New Features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-our-own-pxd-cython-import-file">
+<h3>Add our own <code class="docutils literal notranslate"><span class="pre">*.pxd</span></code> cython import file<a class="headerlink" href="#add-our-own-pxd-cython-import-file" title="Permalink to this headline">¶</a></h3>
+<p>Added a <code class="docutils literal notranslate"><span class="pre">numpy/__init__.pxd</span></code> file. It will be used for <em class="xref py py-obj">cimport numpy</em>
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/12284">gh-12284</a>)</p>
+</div>
+</div>
+<div class="section" id="improvements">
+<h2>Improvements<a class="headerlink" href="#improvements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="different-c-numeric-types-of-the-same-size-have-unique-names">
+<h3>Different C numeric types of the same size have unique names<a class="headerlink" href="#different-c-numeric-types-of-the-same-size-have-unique-names" title="Permalink to this headline">¶</a></h3>
+<p>On any given platform, two of <code class="docutils literal notranslate"><span class="pre">np.intc</span></code>, <code class="docutils literal notranslate"><span class="pre">np.int_</span></code>, and <code class="docutils literal notranslate"><span class="pre">np.longlong</span></code>
+would previously appear indistinguishable through their <code class="docutils literal notranslate"><span class="pre">repr</span></code>, despite
+their corresponding <code class="docutils literal notranslate"><span class="pre">dtype</span></code> having different properties.
+A similar problem existed for the unsigned counterparts to these types, and on
+some plaforms for <code class="docutils literal notranslate"><span class="pre">np.double</span></code> and <code class="docutils literal notranslate"><span class="pre">np.longdouble</span></code></p>
+<p>These types now always print with a unique <code class="docutils literal notranslate"><span class="pre">__name__</span></code>.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/10151">gh-10151</a>)</p>
+</div>
+<div class="section" id="argwhere-now-produces-a-consistent-result-on-0d-arrays">
+<h3><code class="docutils literal notranslate"><span class="pre">argwhere</span></code> now produces a consistent result on 0d arrays<a class="headerlink" href="#argwhere-now-produces-a-consistent-result-on-0d-arrays" title="Permalink to this headline">¶</a></h3>
+<p>On N-d arrays, <a class="reference internal" href="../reference/generated/numpy.argwhere.html#numpy.argwhere" title="numpy.argwhere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.argwhere</span></code></a> now always produces an array of shape
+<code class="docutils literal notranslate"><span class="pre">(n_non_zero,</span> <span class="pre">arr.ndim)</span></code>, even when <code class="docutils literal notranslate"><span class="pre">arr.ndim</span> <span class="pre">==</span> <span class="pre">0</span></code>. Previously, the
+last axis would have a dimension of 1 in this case.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/13610">gh-13610</a>)</p>
+</div>
+<div class="section" id="numpy-unique-has-consistent-axes-order-except-the-chosen-one-when-axis-is-not-none">
+<h3><a class="reference internal" href="../reference/generated/numpy.unique.html#numpy.unique" title="numpy.unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.unique</span></code></a> has consistent axes order (except the chosen one) when <code class="docutils literal notranslate"><span class="pre">axis</span></code> is not None<a class="headerlink" href="#numpy-unique-has-consistent-axes-order-except-the-chosen-one-when-axis-is-not-none" title="Permalink to this headline">¶</a></h3>
+<p>Using <code class="docutils literal notranslate"><span class="pre">moveaxis</span></code> instead of <code class="docutils literal notranslate"><span class="pre">swapaxes</span></code> in <a class="reference internal" href="../reference/generated/numpy.unique.html#numpy.unique" title="numpy.unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.unique</span></code></a>, so that the ordering of axes
+except the axis in arguments will not be broken.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14255">gh-14255</a>)</p>
+</div>
+<div class="section" id="numpy-matmul-with-boolean-output-now-converts-to-boolean-values">
+<h3><a class="reference internal" href="../reference/generated/numpy.matmul.html#numpy.matmul" title="numpy.matmul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.matmul</span></code></a> with boolean output now converts to boolean values<a class="headerlink" href="#numpy-matmul-with-boolean-output-now-converts-to-boolean-values" title="Permalink to this headline">¶</a></h3>
+<p>Calling <a class="reference internal" href="../reference/generated/numpy.matmul.html#numpy.matmul" title="numpy.matmul"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.matmul</span></code></a> where the output is a boolean array would fill the array
+with uint8 equivalents of the result, rather than 0/1. Now it forces the output
+to 0 or 1 (<code class="docutils literal notranslate"><span class="pre">NPY_TRUE</span></code> or <code class="docutils literal notranslate"><span class="pre">NPY_FALSE</span></code>).
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14464">gh-14464</a>)</p>
+</div>
+<div class="section" id="numpy-random-randint-produced-incorrect-value-when-the-range-was-2-32">
+<h3><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.random.randint</span></code> produced incorrect value when the range was <code class="docutils literal notranslate"><span class="pre">2**32</span></code><a class="headerlink" href="#numpy-random-randint-produced-incorrect-value-when-the-range-was-2-32" title="Permalink to this headline">¶</a></h3>
+<p>The implementation introduced in 1.17.0 had an incorrect check when
+determining whether to use the 32-bit path or the full 64-bit
+path that incorrectly redirected random integer generation with a high - low
+range of <code class="docutils literal notranslate"><span class="pre">2**32</span></code> to the 64-bit generator.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14501">gh-14501</a>)</p>
+</div>
+</div>
+<div class="section" id="changes">
+<h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="incorrect-threshold-in-np-set-printoptions-raises-typeerror-or-valueerror">
+<h3>Incorrect <code class="docutils literal notranslate"><span class="pre">threshold</span></code> in <code class="docutils literal notranslate"><span class="pre">np.set_printoptions</span></code> raises <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> or <code class="docutils literal notranslate"><span class="pre">ValueError</span></code><a class="headerlink" href="#incorrect-threshold-in-np-set-printoptions-raises-typeerror-or-valueerror" title="Permalink to this headline">¶</a></h3>
+<p>Previously an incorrect <code class="docutils literal notranslate"><span class="pre">threshold</span></code> raised <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>; it now raises <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>
+for non-numeric types and <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> for <code class="docutils literal notranslate"><span class="pre">nan</span></code> values.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/13899">gh-13899</a>)</p>
+</div>
+<div class="section" id="numpy-distutils-append-behavior-changed-for-ldflags-and-similar">
+<h3><a class="reference internal" href="../reference/distutils.html#module-numpy.distutils" title="numpy.distutils"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.distutils</span></code></a>: append behavior changed for LDFLAGS and similar<a class="headerlink" href="#numpy-distutils-append-behavior-changed-for-ldflags-and-similar" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../reference/distutils.html#module-numpy.distutils" title="numpy.distutils"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.distutils</span></code></a> has always overridden rather than appended to <code class="docutils literal notranslate"><span class="pre">LDFLAGS</span></code> and
+other similar such environment variables for compiling Fortran extensions. Now
+the default behavior has changed to appending - which is the expected behavior
+in most situations.  To preserve the old (overwriting) behavior, set the
+<code class="docutils literal notranslate"><span class="pre">NPY_DISTUTILS_APPEND_FLAGS</span></code> environment variable to 0.  This applies to:
+<code class="docutils literal notranslate"><span class="pre">LDFLAGS</span></code>, <code class="docutils literal notranslate"><span class="pre">F77FLAGS</span></code>, <code class="docutils literal notranslate"><span class="pre">F90FLAGS</span></code>, <code class="docutils literal notranslate"><span class="pre">FREEFLAGS</span></code>, <code class="docutils literal notranslate"><span class="pre">FOPT</span></code>, <code class="docutils literal notranslate"><span class="pre">FDEBUG</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">FFLAGS</span></code>. NumPy 1.16 and 1.17 gave build warnings in situations where this
+change in behavior would have affected the compile flags used.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14248">gh-14248</a>)</p>
+</div>
+<div class="section" id="remove-numpy-random-entropy-without-a-deprecation">
+<h3>Remove <code class="docutils literal notranslate"><span class="pre">numpy.random.entropy</span></code> without a deprecation<a class="headerlink" href="#remove-numpy-random-entropy-without-a-deprecation" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">numpy.random.entropy</span></code> was added to the <a class="reference internal" href="../reference/random/index.html#module-numpy.random" title="numpy.random"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.random</span></code></a> namespace in 1.17.0.
+It was meant to be a private c-extension module, but was exposed as public.
+It has been replaced by <a class="reference internal" href="../reference/random/bit_generators/generated/numpy.random.SeedSequence.html#numpy.random.SeedSequence" title="numpy.random.SeedSequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.random.SeedSequence</span></code></a> so the module was
+completely removed.
+(<a class="reference external" href="https://github.com/numpy/numpy/pull/14498">gh-14498</a>)</p>
+<p>The NumPy 1.18 release is currently in developement. Please check
+the <code class="docutils literal notranslate"><span class="pre">numpy/doc/release/upcoming_changes/</span></code> folder for upcoming
+release notes.
+The <code class="docutils literal notranslate"><span class="pre">numpy/doc/release/upcoming_changes/README.txt</span></code> details how
+to add new release notes.</p>
+<p>For the work in progress release notes for the current development
+version, see the <a class="reference external" href="https://numpy.org/devdocs/release.html">devdocs</a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2008-2019, The SciPy community.
+      </li>
+      <li>
+      Last updated on Sep 17, 2019.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

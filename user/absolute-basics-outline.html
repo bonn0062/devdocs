@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>What is NumPy? &mdash; NumPy v1.18.dev0 Manual</title>
+    
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../_static/css/spc-extend.css">
+    <link rel="stylesheet" href="../_static/scipy.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" >
+    <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" >
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.18.0.dev0+9723e9c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/js/copybutton.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" >
+    <link rel="index" title="Index" href="../genindex.html" >
+    <link rel="search" title="Search" href="../search.html" >
+    <link rel="top" title="NumPy v1.18.dev0 Manual" href="../index.html" >
+    <link rel="up" title="Setting up" href="setting-up.html" >
+    <link rel="next" title="Installing NumPy" href="install.html" >
+    <link rel="prev" title="Setting up" href="setting-up.html" > 
+  </head>
+  <body>
+<div class="container">
+  <div class="top-scipy-org-logo-header" style="background-color: #a2bae8;">
+    <a href="../index.html">
+      <img border=0 alt="NumPy" src="../_static/numpy_logo.png"></a>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <div class="main">
+        
+	<div class="row-fluid">
+	  <div class="span12">
+	    <div class="spc-navbar">
+              
+    <ul class="nav nav-pills pull-left">
+        <li class="active"><a href="https://numpy.org/">NumPy.org</a></li>
+        <li class="active"><a href="https://numpy.org/doc">Docs</a></li>
+        
+        <li class="active"><a href="../index.html">NumPy v1.18.dev0 Manual</a></li>
+        
+
+          <li class="active"><a href="index.html" >NumPy User Guide</a></li>
+          <li class="active"><a href="setting-up.html" accesskey="U">Setting up</a></li> 
+    </ul>
+              
+              
+    <ul class="nav nav-pills pull-right">
+      <li class="active">
+        <a href="../genindex.html" title="General Index"
+           accesskey="I">index</a>
+      </li>
+      <li class="active">
+        <a href="install.html" title="Installing NumPy"
+           accesskey="N">next</a>
+      </li>
+      <li class="active">
+        <a href="setting-up.html" title="Setting up"
+           accesskey="P">previous</a>
+      </li>
+    </ul>
+              
+	    </div>
+	  </div>
+	</div>
+        
+
+	<div class="row-fluid">
+      <div class="spc-rightsidebar span3">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">What is NumPy?</a><ul>
+<li><a class="reference internal" href="#">How do I get it?</a></li>
+<li><a class="reference internal" href="#">What do I do with it?</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="setting-up.html"
+                        title="previous chapter">Setting up</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="next chapter">Installing NumPy</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h4>Quick search</h4>
+    <div>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" style="width: inherit;" name="q" />
+      <input type="submit" value="search" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+          <div class="span9">
+            
+        <div class="bodywrapper">
+          <div class="body" id="spc-section-body">
+            
+  <div class="section" id="what-is-numpy">
+<h1>NumPy: The Absolute Basics for Beginners<a class="headerlink" href="#what-is-numpy" title="Permalink to this headline">¶</a></h1>
+<p>(This is a working outline for a future section introducing NumPy to absolute beginners. If you have comments or suggestions, please don’t hesitate to reach out!)</p>
+
+<p><br />
+</p>
+
+<ul>
+  <li>What is NumPy?</li>
+  </ul>
+  
+  <p></p>
+  </p>
+  
+  <ul>
+  <li>How to install NumPy</li>
+  <ul>
+  <li>various operating systems </li>
+  </ul>
+  
+  </ul>
+  
+  <p>
+  </p>
+  
+  <ul>
+  <li>How to import NumPy</li>
+  </ul>
+  
+  <p>
+  </p>
+  
+  <ul>
+  <li>What is an array</li>
+  <ul>
+  <li>What else might it be called</li>
+  <li>What is its shape</li>
+  <li>Can you reshape it?</li>
+  <li>What’s the difference between a Python List and a NumPy array? Why use NumPy?</li>
+  <li>What are the attributes of an array?</li>
+  <li>Broadcasting example</li>
+  </ul>
+  
+  <li>How to create an array (ndarray object)</li>
+  <li>How to create a basic array</li>
+  <li>How to create an array from existing data</li>
+  <li>How to create a new array from an existing array</li>
+  <li>How to specify the datatype</li>
+  <ul>
+  <li>Examples of commonly used NumPy dtypes</li>
+  </ul>
+  
+  <li>How to inspect the size and shape of a NumPy array</li>
+  <li>How to check whether a list is empty or not</li>
+  <li>How to represent missing values and infinite values</li>
+  <li>Indexing and Slicing</li>
+  <li>Basic array operations (np.sum, np.dot, np.append, np.diff</li>
+  <ul>
+  <li>Operations on a single array</li>
+  <li>Unary operators</li>
+  <li>Binary operators</li>
+  <li>Universal functions</li>
+  </ul>
+  
+  <li>How to compute mean, minimum, maximum, cumulative sum</li>
+  <ul>
+  <li>(include row-wise and column-wise compute)</li>
+  </ul>
+  
+  <li>Sorting an array</li>
+  <li>How to concatenate two arrays</li>
+  <ul>
+  <li>column-wise</li>
+  <li>row-wise</li>
+  <ul>
+  <li>np.concatenate, np.vstack, np.hstack, np.r_, np.c_</li>
+  </ul>
+  
+  </ul>
+  
+  <li>How to sort an array </li>
+  <ul>
+  <li>based on one (or more) columns</li>
+  <ul>
+  <li>np.sort</li>
+  <li>np.argsort</li>
+  </ul>
+  
+  <li>based on two or more columns</li>
+  <ul>
+  <li>np.lexsort</li>
+  </ul>
+  
+  </ul>
+  
+  <li>How to pass a list of lists to create a matrix</li>
+  <li>How to extract specific items from an array</li>
+  <li>How to create sequences, repetitions, and random numbers</li>
+  <ul>
+  <li>np.linspace</li>
+  <li>np.logspace</li>
+  <li>np.zeros</li>
+  <li>np.ones</li>
+  <li>np.tile</li>
+  <li>np.random.randn</li>
+  <li>np.random.randint</li>
+  <li>np.random.random</li>
+  <li>np.random.choice</li>
+  <li>np.random.RandomState, np.random.seed</li>
+  </ul>
+  
+  <li>How to get the unique items and the counts</li>
+  <li>How to get index locations that satisfy a given condition </li>
+  <li>How to reverse</li>
+  <ul>
+  <li>How to reverse the rows</li>
+  <li>How to reverse the whole array</li>
+  </ul>
+  
+  <li>Reshaping and Flattening multidimensional arrays</li>
+  <ul>
+  <li>flatten vs ravel</li>
+  </ul>
+  
+  <li>How to import and export data as a CSV</li>
+  <li>How to save and load NumPy objects</li>
+  <li>How to apply a function column-wise or row-wise</li>
+  <li>How to convert a 1D array into a 2D array (how to add a new axis)</li>
+  <li>Working with dates and times</li>
+  <ul>
+  <li>creating a date time object</li>
+  <li>removing time from date</li>
+  <li>create individual units of time</li>
+  <li>convert back to a string</li>
+  <li>filter business days</li>
+  <li>creating a sequence of dates</li>
+  </ul>
+  
+  <li>More useful functions:</li>
+  <ul>
+  <li>np.clip</li>
+  <li>np.digitize</li>
+  <li>np.bincount</li>
+  <li>np.histogram</li>
+  </ul>
+  
+  </ul>
+  
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-navbar-bottom">
+      <div class="spc-navbar">
+        
+      </div>
+    </div>
+    <div class="container">
+    <div class="footer">
+    <div class="row-fluid">
+    <ul class="inline pull-left">
+      <li>
+        &copy; Copyright 2008-2019, The SciPy community.
+      </li>
+      <li>
+      Last updated on Sep 17, 2019.
+      </li>
+      <li>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.5.
+      </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
